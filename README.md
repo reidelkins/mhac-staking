@@ -1,1 +1,0 @@
-# MHAC_Staking
