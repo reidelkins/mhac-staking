@@ -18,6 +18,12 @@ bank: bankHHdqMuaaST4qQk6mkzxGeKPHWmqdgor6Gs8r88m
 farm: farmL4xeBFVXJqtfxCzU9b28QACM7E2W2ctT6epAjvE
 ```
 
+MHAC Devnet Prog IDs
+```
+bank: bankHHdqMuaaST4qQk6mkzxGeKPHWmqdgor6Gs8r88m
+farm: farmL4xeBFVXJqtfxCzU9b28QACM7E2W2ctT6epAjvE
+```
+
 You can interact with them using this [front-end](https://www.gemfarm.gg/) (or build your own).
 
 # Deploy your own version 🛠
