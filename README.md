@@ -10,6 +10,27 @@ It consists of:
 
 Gem Bank is used under the hood by Gem Farm.
 
+# Run locally and test existing tool
+MHAC Devnet Prog IDs
+```
+bank: AvUBeD6AAe1cG6MVytMYN1yqBrWZoaapc1JLDNbpC8qN
+farm: 9k22Xn2a9AJCnRsTNA3rCcwqi8hqQTXwqJ7ZS6X1kwQ7
+```
+- insert the new Bank prog ID in the following locations:
+        - `./Anchor.toml`
+        - `./programs/gem_bank/src/lib.rs`
+        - `./src/index.ts` (replace GEM_BANK_PROG_ID)
+ - insert the new Farm prog ID in the following locations:
+        - `./Anchor.toml`
+        - `./programs/gem_farm/src/lib.rs`
+        - `./src/index.ts` (replace GEM_FARM_PROG_ID)
+
+- Copy IDLs with script`./scripts/cp_idl.sh`
+- (!) IMPORTANT - run `yarn` inside the root of the repo
+- finally start the apps!
+    - eg cd into `app/gem-bank` and run yarn && yarn serve
+- don't forget to open Chrome's console with `CMD+SHIFT+I` 
+
 # Official deployment 🚀
 
 Both programs are now officially deployed across all 3 networks (mainnet, devnet, testnet):
@@ -48,6 +69,11 @@ You can interact with them using this [front-end](https://www.gemfarm.gg/) (or b
 - don't forget to open Chrome's console with `CMD+SHIFT+I` to get feedback from the app when you click buttons. It currently doesn't have a notifications system
 
 Note that deploying your own version will cost you ~20 SOL.
+
+# Notes
+
+Ensure to use a stable version of solana.
+- currently solana-cli 1.8.17
 
 # Debug cryptic errors ⚠️
 
