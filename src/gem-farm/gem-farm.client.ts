@@ -48,6 +48,8 @@ export interface FarmConfig {
   unstakingFeeLamp: BN;
 }
 
+
+
 export interface TierConfig {
   rewardRate: BN;
   requiredTenure: BN;
@@ -210,7 +212,7 @@ export class GemFarmClient extends GemBankClient {
     rewardAType: any, //RewardType instance
     rewardBMint: PublicKey,
     rewardBType: any, //RewardType instance
-    farmConfig: FarmConfig
+    farmConfig: FarmConfig,
   ) {
     const [farmAuth, farmAuthBump] = await findFarmAuthorityPDA(farm.publicKey);
     const [farmTreasury, farmTreasuryBump] = await findFarmTreasuryPDA(
@@ -276,21 +278,25 @@ export class GemFarmClient extends GemBankClient {
     farm: PublicKey,
     farmManager: PublicKey | Keypair,
     config: FarmConfig | null = null,
-    newManager: PublicKey | null = null
+    newManager: PublicKey | null = null,
   ) {
     const signers = [];
     if (isKp(farmManager)) signers.push(<Keypair>farmManager);
 
     console.log('updating farm');
-    const txSig = await this.farmProgram.rpc.updateFarm(config, newManager, {
-      accounts: {
-        farm,
-        farmManager: isKp(farmManager)
-          ? (<Keypair>farmManager).publicKey
-          : farmManager,
-      },
-      signers,
-    });
+    const txSig = await this.farmProgram.rpc.updateFarm(
+      config,
+      newManager,
+      {
+        accounts: {
+          farm,
+          farmManager: isKp(farmManager)
+            ? (<Keypair>farmManager).publicKey
+            : farmManager,
+        },
+        signers,
+      }
+    );
 
     return { txSig };
   }

@@ -28,7 +28,7 @@ import useWallet from '@/composables/wallet';
 import useCluster from '@/composables/cluster';
 import { initGemFarm } from '@/common/gem-farm';
 import { PublicKey } from '@solana/web3.js';
-import { findFarmTreasuryPDA } from '@gemworks/gem-farm-ts';
+import { findFarmTreasuryPDA } from '@reidelkins/mhac-staking';
 
 export default defineComponent({
   props: {

@@ -18,7 +18,7 @@ pub struct FarmConfig {
     pub unstaking_fee_lamp: u64,
 }
 
-#[proc_macros::assert_size(1000)] // + 5 to make it /8
+#[proc_macros::assert_size(992)] // + 5 to make it /8
 #[repr(C)]
 #[account]
 #[derive(Debug)]
@@ -66,8 +66,11 @@ pub struct Farm {
 
     pub reward_b: FarmReward,
 
+    // ----------------- extra
     /// reserved for future updates, has to be /8
-    _reserved: [u8; 64],
+    _reserved: [u8; 32],
+    _reserved2: [u8; 16],
+    _reserved3: [u8; 4],
 }
 
 impl Farm {

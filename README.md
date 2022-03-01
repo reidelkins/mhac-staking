@@ -31,6 +31,13 @@ farm: 9k22Xn2a9AJCnRsTNA3rCcwqi8hqQTXwqJ7ZS6X1kwQ7
     - eg cd into `app/gem-bank` and run yarn && yarn serve
 - don't forget to open Chrome's console with `CMD+SHIFT+I` 
 
+# Update Gem Farm or Bank on the chain
+- Verify that the wallet and program IDs are correct in all places (see above)
+- From root `anchor build` one more time
+- Update existing contracts
+    - `anchor upgrade --provider.cluster devnet --program-id AvUBeD6AAe1cG6MVytMYN1yqBrWZoaapc1JLDNbpC8qN ./target/deploy/gem_bank.so`
+    - `anchor upgrade --provider.cluster devnet --program-id 9k22Xn2a9AJCnRsTNA3rCcwqi8hqQTXwqJ7ZS6X1kwQ7 ./target/deploy/gem_farm.so`
+
 # Official deployment 🚀
 
 Both programs are now officially deployed across all 3 networks (mainnet, devnet, testnet):

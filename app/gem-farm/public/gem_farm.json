@@ -1102,7 +1102,25 @@
             "type": {
               "array": [
                 "u8",
-                64
+                32
+              ]
+            }
+          },
+          {
+            "name": "reserved2",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          },
+          {
+            "name": "reserved3",
+            "type": {
+              "array": [
+                "u8",
+                4
               ]
             }
           }
@@ -1621,9 +1639,5 @@
         ]
       }
     }
-  ],
-  "metadata": {
-    "address": "9k22Xn2a9AJCnRsTNA3rCcwqi8hqQTXwqJ7ZS6X1kwQ7"
-
-  }
+  ]
 }

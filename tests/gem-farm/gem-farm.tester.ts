@@ -190,7 +190,10 @@ export class GemFarmTester extends GemFarmClient {
   // --------------------------------------- callers
   // ----------------- core
 
-  async callInitFarm(farmConfig: FarmConfig, rewardType?: any) {
+  async callInitFarm(
+    farmConfig: FarmConfig,
+    rewardType?: any,
+  ) {
     const isRewardA = this.reward === 'rewardA';
 
     return this.initFarm(
@@ -202,16 +205,19 @@ export class GemFarmTester extends GemFarmClient {
       rewardType ?? RewardType.Variable,
       isRewardA ? this.rewardSecondMint.publicKey : this.rewardMint.publicKey,
       rewardType ?? RewardType.Variable,
-      farmConfig
+      farmConfig,
     );
   }
 
-  async callUpdateFarm(farmConfig?: FarmConfig, newManager?: PublicKey) {
+  async callUpdateFarm(
+    farmConfig?: FarmConfig,
+    newManager?: PublicKey,
+  ) {
     return this.updateFarm(
       this.farm.publicKey,
       this.farmManager,
       farmConfig,
-      newManager
+      newManager,
     );
   }
 

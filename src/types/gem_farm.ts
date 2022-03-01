@@ -1102,7 +1102,25 @@ export type GemFarm = {
             "type": {
               "array": [
                 "u8",
-                64
+                32
+              ]
+            }
+          },
+          {
+            "name": "reserved2",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          },
+          {
+            "name": "reserved3",
+            "type": {
+              "array": [
+                "u8",
+                4
               ]
             }
           }
@@ -2728,7 +2746,25 @@ export const IDL: GemFarm = {
             "type": {
               "array": [
                 "u8",
-                64
+                32
+              ]
+            }
+          },
+          {
+            "name": "reserved2",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          },
+          {
+            "name": "reserved3",
+            "type": {
+              "array": [
+                "u8",
+                4
               ]
             }
           }
