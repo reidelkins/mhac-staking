@@ -69,7 +69,7 @@ import useCluster from '../../composables/cluster';
 import { initGemFarm } from '@/common/gem-farm';
 import { PublicKey } from '@solana/web3.js';
 import { BN } from '@project-serum/anchor';
-import { RewardType } from '@gemworks/gem-farm-ts';
+import { RewardType } from '@reidelkins/mhac-staking';
 
 export default defineComponent({
   emits: ['new-farm'],

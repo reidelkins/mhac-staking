@@ -83,7 +83,7 @@ import ConfigPane from '@/components/ConfigPane.vue';
 import FarmerDisplay from '@/components/gem-farm/FarmerDisplay.vue';
 import Vault from '@/components/gem-bank/Vault.vue';
 import { INFT } from '@/common/web3/NFTget';
-import { findFarmerPDA, stringifyPKsAndBNs } from '@gemworks/gem-farm-ts';
+import { findFarmerPDA, stringifyPKsAndBNs } from '@reidelkins/mhac-staking';
 
 export default defineComponent({
   components: { Vault, FarmerDisplay, ConfigPane },

@@ -53,7 +53,7 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, ref, watch } from 'vue';
-import { WhitelistType } from '@gemworks/gem-farm-ts';
+import { WhitelistType } from '@reidelkins/mhac-staking';
 import useCluster from '@/composables/cluster';
 import useWallet from '@/composables/wallet';
 import { initGemBank } from '@/common/gem-bank';

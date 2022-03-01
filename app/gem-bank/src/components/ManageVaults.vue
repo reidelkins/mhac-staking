@@ -51,7 +51,7 @@ import { PublicKey } from '@solana/web3.js';
 import NFTGrid from '@/components/NFTGrid.vue';
 import useWallet from '@/composables/wallet';
 import VaultDetails from '@/components/VaultDetails.vue';
-import { stringifyPKsAndBNs } from '@gemworks/gem-farm-ts';
+import { stringifyPKsAndBNs } from '@reidelkins/mhac-staking';
 
 export default defineComponent({
   components: { VaultDetails, NFTGrid },

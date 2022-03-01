@@ -82,7 +82,7 @@ import { PublicKey } from '@solana/web3.js';
 import { getListDiffBasedOnMints, removeManyFromList } from '@/common/util';
 import { BN } from '@project-serum/anchor';
 import TheWhitelist from '@/components/TheWhitelist.vue';
-import { findVaultPDA } from '@gemworks/gem-farm-ts';
+import { findVaultPDA } from '@reidelkins/mhac-staking';
 
 export default defineComponent({
   components: { TheWhitelist, ArrowButton, NFTGrid, ConfigPane },

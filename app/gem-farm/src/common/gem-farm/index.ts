@@ -11,7 +11,7 @@ import {
   findWhitelistProofPDA,
   GEM_FARM_PROG_ID,
   GEM_BANK_PROG_ID,
-} from '@gemworks/gem-farm-ts';
+} from '@reidelkins/mhac-staking';
 import { programs } from '@metaplex/js';
 
 export async function initGemFarm(
@@ -51,6 +51,7 @@ export class GemFarm extends GemFarmClient {
       farmConfig
     );
 
+    
     console.log('new farm started!', farm.publicKey.toBase58());
     console.log('bank is:', bank.publicKey.toBase58());
 

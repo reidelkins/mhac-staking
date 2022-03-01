@@ -51,7 +51,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { GEM_FARM_PROG_ID } from '@gemworks/gem-farm-ts';
+import { GEM_FARM_PROG_ID } from '@reidelkins/mhac-staking';
 export default defineComponent({
   setup() {
     return {
