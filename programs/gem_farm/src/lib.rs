@@ -22,26 +22,17 @@ pub mod gem_farm {
         reward_type_a: RewardType,
         reward_type_b: RewardType,
         farm_config: FarmConfig,
-        max_counts: Option<MaxCounts>,
     ) -> Result<()> {
         msg!("init farm");
-        instructions::init_farm::handler(
-            ctx,
-            bump_auth,
-            reward_type_a,
-            reward_type_b,
-            farm_config,
-            max_counts,
-        )
+        instructions::init_farm::handler(ctx, bump_auth, reward_type_a, reward_type_b, farm_config)
     }
 
     pub fn update_farm(
         ctx: Context<UpdateFarm>,
         config: Option<FarmConfig>,
         manager: Option<Pubkey>,
-        max_counts: Option<MaxCounts>,
     ) -> Result<()> {
-        instructions::update_farm::handler(ctx, config, manager, max_counts)
+        instructions::update_farm::handler(ctx, config, manager)
     }
 
     pub fn payout_from_treasury(
