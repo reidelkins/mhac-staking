@@ -1191,10 +1191,10 @@
     bs58 "^4.0.1"
     eventemitter3 "^4.0.7"
 
-"@reidelkins/mhac-staking@^1.0.3":
-  version "1.0.3"
-  resolved "https://registry.npmjs.org/@reidelkins/mhac-staking/-/mhac-staking-1.0.3.tgz"
-  integrity "sha1-i8EiJCh4G21T2/VBHQlTbLJF+UQ= sha512-R4BfyVcnWykcBKutOYOkdvZCWls75SmucYKf2dTZl9QEZZsmqXG82N+fdzaRiISSupfuj8h8fDNeaYbaQpre3g=="
+"@reidelkins/mhac-staking@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/@reidelkins/mhac-staking/-/mhac-staking-1.0.4.tgz"
+  integrity "sha1-5lKGmlkzQpXSywf/Btk49WXM+kc= sha512-yBeamBkqzmoVep0G7mpOZcwcI3vMqfyyXJ3ySYQeXWmoff9+xlAf0XgSVRjnHIn5BZbgO3Ev4c3PgiRoN0ATpw=="
   dependencies:
     "@metaplex-foundation/mpl-token-metadata" "^0.0.2"
     "@metaplex/js" "^4.9.0"

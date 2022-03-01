@@ -976,9 +976,9 @@
   dependencies:
     purgecss "^3.1.3"
 
-"@reidelkins/mhac-staking@^0.22.6":
-  version "0.22.6"
-  resolved "https://registry.yarnpkg.com/@reidelkins/mhac-staking/-/gem-farm-ts-0.22.6.tgz#67d0a53b79cc6bcec30c39c41fa4b0190bab2ec1"
+"@reidelkins/mhac-staking@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@reidelkins/mhac-staking/-/gem-farm-ts-1.0.4.tgz#67d0a53b79cc6bcec30c39c41fa4b0190bab2ec1"
   integrity sha512-/857NlhC+GaFu/3ZyvHBwjdym0aEJUIUSp3qMX2EkNufisuo8759pqcDE1cvz/MOSHDsSYq2QUFUcjfAFfWGmQ==
   dependencies:
     "@metaplex-foundation/mpl-token-metadata" "^0.0.2"
