@@ -226,8 +226,25 @@ impl FixedRateSchedule {
         iter.fold(init, |last, this| last?.try_add(this?))
     }
 
-    pub fn reward_amount(&self, start_from: u64, end_at: u64, rarity_points: u64) -> Result<u64> {
+    //pub fn reward_amount(&self, start_from: u64, end_at: u64, rarity_points: u64) -> Result<u64> {
+    pub fn reward_amount(
+        &self,
+        start_from: u64,
+        end_at: u64,
+        rarity_points: u64,
+        amount_staked: u64,
+    ) -> Result<u64> {
         let per_rarity_point = self.reward_per_rarity_point(start_from, end_at)?;
+        let amount_staked_bonus = 100;
+        if amount_staked > 19 {
+            amount_staked_bonus = 125;
+        } else if amount_staked > 9 {
+            amount_staked_bonus = 120;
+        } else if amount_staked > 4 {
+            amount_staked_bonus = 110;
+        } else if amount_staked > 2 {
+            amount_staked_bonus = 105;
+        }
 
         // considered making this U128, but drastically increases app's complexity
         //   (not just rust-side calc, but also js-side serde)
@@ -237,6 +254,7 @@ impl FixedRateSchedule {
         // maybe in v1++, if there's demand from users
         rarity_points
             .try_mul(per_rarity_point)?
+            .try_mul(amount_staked_bonus)?
             .try_div(self.denominator)
     }
 }
@@ -302,13 +320,15 @@ impl FixedRateReward {
         now_ts: u64,
         times: &mut TimeTracker,
         funds: &mut FundsTracker,
+        farmer_gems_staked: u64,
         farmer_rarity_points_staked: u64,
         farmer_reward: &mut FarmerReward,
         reenroll: bool,
     ) -> Result<()> {
         let newly_accrued_reward = farmer_reward
             .fixed_rate
-            .newly_accrued_reward(now_ts, farmer_rarity_points_staked)?;
+            //.newly_accrued_reward(now_ts, farmer_rarity_points_staked)?;
+            .newly_accrued_reward(now_ts, farmer_rarity_points_staked, farmer_gems_staked)?;
 
         // update farm (move amount from reserved to accrued)
         funds
@@ -322,8 +342,11 @@ impl FixedRateReward {
         if farmer_reward.fixed_rate.is_staked()
             && farmer_reward.fixed_rate.is_time_to_graduate(now_ts)?
         {
-            let original_staking_start =
-                self.graduate_farmer(farmer_rarity_points_staked, farmer_reward)?;
+            let original_staking_start = self.graduate_farmer(
+                farmer_rarity_points_staked,
+                farmer_reward,
+                farmer_gems_staked,
+            )?;
 
             // if desired, we roll them forward with original staking time
             // why would it not be desired?
@@ -334,6 +357,7 @@ impl FixedRateReward {
                     now_ts,
                     times,
                     funds,
+                    farmer_gems_staked,
                     farmer_rarity_points_staked,
                     farmer_reward,
                     Some(original_staking_start),
@@ -350,6 +374,7 @@ impl FixedRateReward {
         now_ts: u64,
         times: &mut TimeTracker,
         funds: &mut FundsTracker,
+        farmer_gems_staked: u64,
         farmer_rarity_points_staked: u64,
         farmer_reward: &mut FarmerReward,
         original_staking_start: Option<u64>, //used when we roll a farmer forward, w/o them unstaking
@@ -369,6 +394,7 @@ impl FixedRateReward {
             bonus_time,
             remaining_duration.try_add(bonus_time)?,
             farmer_rarity_points_staked,
+            farmer_gems_staked,
         )?;
         if reserve_amount > funds.pending_amount()? {
             return Err(error!(ErrorCode::RewardUnderfunded));
@@ -395,13 +421,14 @@ impl FixedRateReward {
         &mut self,
         farmer_rarity_points_staked: u64,
         farmer_reward: &mut FarmerReward,
+        farmer_gems_staked: u64,
     ) -> Result<u64> {
         let original_begin_staking_ts = farmer_reward.fixed_rate.begin_staking_ts;
 
         // reduce reserved amount
         let voided_reward = farmer_reward
             .fixed_rate
-            .voided_reward(farmer_rarity_points_staked)?;
+            .voided_reward(farmer_rarity_points_staked, farmer_gems_staked)?;
 
         self.reserved_amount.try_sub_assign(voided_reward)?;
 
@@ -602,17 +629,17 @@ mod tests {
         let base = FixedRateSchedule::new_base(3, 1);
 
         // zero case
-        let amount = base.reward_amount(0, 0, 10).unwrap();
+        let amount = base.reward_amount(0, 0, 10, 1).unwrap();
         assert_eq!(amount, 0);
 
-        let amount = base.reward_amount(0, 5, 10).unwrap();
+        let amount = base.reward_amount(0, 5, 10, 1).unwrap();
         assert_eq!(amount, 3 * 5 * 10);
 
-        let amount = base.reward_amount(3, 5, 10).unwrap();
+        let amount = base.reward_amount(3, 5, 10, 1).unwrap();
         assert_eq!(amount, 3 * 2 * 10);
 
         // max out case
-        let amount = base.reward_amount(5, 5, 10).unwrap();
+        let amount = base.reward_amount(5, 5, 10, 1).unwrap();
         assert_eq!(amount, 0);
     }
 
@@ -621,17 +648,17 @@ mod tests {
         let base = FixedRateSchedule::new_base(3, 10);
 
         // zero case
-        let amount = base.reward_amount(0, 0, 10).unwrap();
+        let amount = base.reward_amount(0, 0, 10, 1).unwrap();
         assert_eq!(amount, 0);
 
-        let amount = base.reward_amount(0, 5, 10).unwrap();
+        let amount = base.reward_amount(0, 5, 10, 1).unwrap();
         assert_eq!(amount, 3 * 5);
 
-        let amount = base.reward_amount(3, 5, 10).unwrap();
+        let amount = base.reward_amount(3, 5, 10, 1).unwrap();
         assert_eq!(amount, 3 * 2);
 
         // max out case
-        let amount = base.reward_amount(5, 5, 10).unwrap();
+        let amount = base.reward_amount(5, 5, 10, 1).unwrap();
         assert_eq!(amount, 0);
     }
 
@@ -640,17 +667,17 @@ mod tests {
         let base = FixedRateSchedule::new_base(3, 7);
 
         // zero case
-        let amount = base.reward_amount(0, 0, 10).unwrap();
+        let amount = base.reward_amount(0, 0, 10, 1).unwrap();
         assert_eq!(amount, 0);
 
-        let amount = base.reward_amount(0, 5, 10).unwrap();
+        let amount = base.reward_amount(0, 5, 10, 1).unwrap();
         assert_eq!(amount, 21); //floor division
 
-        let amount = base.reward_amount(3, 5, 10).unwrap();
+        let amount = base.reward_amount(3, 5, 10, 1).unwrap();
         assert_eq!(amount, 8); //floor division
 
         // max out case
-        let amount = base.reward_amount(5, 5, 10).unwrap();
+        let amount = base.reward_amount(5, 5, 10, 1).unwrap();
         assert_eq!(amount, 0);
     }
 
@@ -659,23 +686,23 @@ mod tests {
         let t1 = FixedRateSchedule::new_t1(5, 10);
 
         // zero case
-        let amount = t1.reward_amount(0, 0, 10).unwrap();
+        let amount = t1.reward_amount(0, 0, 10, 1).unwrap();
         assert_eq!(amount, 0);
 
         // base only case
-        let amount = t1.reward_amount(0, 5, 10).unwrap();
+        let amount = t1.reward_amount(0, 5, 10, 1).unwrap();
         assert_eq!(amount, 3 * 5 * 10);
 
         // t1 only case
-        let amount = t1.reward_amount(10, 15, 10).unwrap();
+        let amount = t1.reward_amount(10, 15, 10, 1).unwrap();
         assert_eq!(amount, 5 * 5 * 10);
 
         // base + t1 case
-        let amount = t1.reward_amount(0, 15, 10).unwrap();
+        let amount = t1.reward_amount(0, 15, 10, 1).unwrap();
         assert_eq!(amount, (3 * 10 + 5 * 5) * 10);
 
         // max out case
-        let amount = t1.reward_amount(25, 25, 10).unwrap();
+        let amount = t1.reward_amount(25, 25, 10, 1).unwrap();
         assert_eq!(amount, 0);
     }
 
@@ -684,35 +711,35 @@ mod tests {
         let t2 = FixedRateSchedule::new_t2(7, 20);
 
         // zero case
-        let amount = t2.reward_amount(0, 0, 10).unwrap();
+        let amount = t2.reward_amount(0, 0, 10, 1).unwrap();
         assert_eq!(amount, 0);
 
         // base only case
-        let amount = t2.reward_amount(0, 5, 10).unwrap();
+        let amount = t2.reward_amount(0, 5, 10, 1).unwrap();
         assert_eq!(amount, 3 * 5 * 10);
 
         // t1 only case
-        let amount = t2.reward_amount(10, 15, 10).unwrap();
+        let amount = t2.reward_amount(10, 15, 10, 1).unwrap();
         assert_eq!(amount, 5 * 5 * 10);
 
         // base + t1 case
-        let amount = t2.reward_amount(0, 15, 10).unwrap();
+        let amount = t2.reward_amount(0, 15, 10, 1).unwrap();
         assert_eq!(amount, (3 * 10 + 5 * 5) * 10);
 
         // t2 only case
-        let amount = t2.reward_amount(20, 25, 10).unwrap();
+        let amount = t2.reward_amount(20, 25, 10, 1).unwrap();
         assert_eq!(amount, (7 * 5) * 10);
 
         // t1 + t2 case
-        let amount = t2.reward_amount(10, 25, 10).unwrap();
+        let amount = t2.reward_amount(10, 25, 10, 1).unwrap();
         assert_eq!(amount, (5 * 10 + 7 * 5) * 10);
 
         // base + t1 + t2 case
-        let amount = t2.reward_amount(0, 25, 10).unwrap();
+        let amount = t2.reward_amount(0, 25, 10, 1).unwrap();
         assert_eq!(amount, (3 * 10 + 5 * 10 + 7 * 5) * 10);
 
         // max out case
-        let amount = t2.reward_amount(25, 25, 10).unwrap();
+        let amount = t2.reward_amount(25, 25, 10, 1).unwrap();
         assert_eq!(amount, 0);
     }
 
@@ -721,51 +748,51 @@ mod tests {
         let t3 = FixedRateSchedule::new_t3(7, 20, 11, 30);
 
         // zero case
-        let amount = t3.reward_amount(0, 0, 10).unwrap();
+        let amount = t3.reward_amount(0, 0, 10, 1).unwrap();
         assert_eq!(amount, 0);
 
         // base only case
-        let amount = t3.reward_amount(0, 5, 10).unwrap();
+        let amount = t3.reward_amount(0, 5, 10, 1).unwrap();
         assert_eq!(amount, 3 * 5 * 10);
 
         // t1 only case
-        let amount = t3.reward_amount(10, 15, 10).unwrap();
+        let amount = t3.reward_amount(10, 15, 10, 1).unwrap();
         assert_eq!(amount, 5 * 5 * 10);
 
         // base + t1 case
-        let amount = t3.reward_amount(0, 15, 10).unwrap();
+        let amount = t3.reward_amount(0, 15, 10, 1).unwrap();
         assert_eq!(amount, (3 * 10 + 5 * 5) * 10);
 
         // t2 only case
-        let amount = t3.reward_amount(20, 25, 10).unwrap();
+        let amount = t3.reward_amount(20, 25, 10, 1).unwrap();
         assert_eq!(amount, (7 * 5) * 10);
 
         // t1 + t2 case
-        let amount = t3.reward_amount(10, 25, 10).unwrap();
+        let amount = t3.reward_amount(10, 25, 10, 1).unwrap();
         assert_eq!(amount, (5 * 10 + 7 * 5) * 10);
 
         // base + t1 + t2 case
-        let amount = t3.reward_amount(0, 25, 10).unwrap();
+        let amount = t3.reward_amount(0, 25, 10, 1).unwrap();
         assert_eq!(amount, (3 * 10 + 5 * 10 + 7 * 5) * 10);
 
         // t3 only case
-        let amount = t3.reward_amount(30, 35, 10).unwrap();
+        let amount = t3.reward_amount(30, 35, 10, 1).unwrap();
         assert_eq!(amount, (11 * 5) * 10);
 
         // t2 + t3 case
-        let amount = t3.reward_amount(20, 35, 10).unwrap();
+        let amount = t3.reward_amount(20, 35, 10, 1).unwrap();
         assert_eq!(amount, (7 * 10 + 11 * 5) * 10);
 
         // t1 + t2 + t3 case
-        let amount = t3.reward_amount(10, 35, 10).unwrap();
+        let amount = t3.reward_amount(10, 35, 10, 1).unwrap();
         assert_eq!(amount, (5 * 10 + 7 * 10 + 11 * 5) * 10);
 
         // base + t1 + t2 + t3 case
-        let amount = t3.reward_amount(0, 35, 10).unwrap();
+        let amount = t3.reward_amount(0, 35, 10, 1).unwrap();
         assert_eq!(amount, (3 * 10 + 5 * 10 + 7 * 10 + 11 * 5) * 10);
 
         // max out case
-        let amount = t3.reward_amount(35, 35, 10).unwrap();
+        let amount = t3.reward_amount(35, 35, 10, 1).unwrap();
         assert_eq!(amount, 0);
     }
 }

@@ -120,17 +120,26 @@ impl Farm {
         reenroll: bool, //relevant for fixed only
     ) -> Result<()> {
         // reward a
-        let (farmer_points_staked, farmer_reward_a) = match farmer {
+        /*let (farmer_points_staked, farmer_reward_a) = match farmer {
             Some(ref mut farmer) => (
                 Some(farmer.rarity_points_staked),
                 Some(&mut farmer.reward_a),
             ),
             None => (None, None),
+        };*/
+        let (farmer_points_staked, farmer_gems_staked, farmer_reward_a) = match farmer {
+            Some(ref mut farmer) => (
+                Some(farmer.rarity_points_staked),
+                Some(farmer.gems_staked),
+                Some(&mut farmer.reward_a),
+            ),
+            None => (None, None, None),
         };
 
         self.reward_a.update_accrued_reward_by_type(
             now_ts,
             self.rarity_points_staked,
+            farmer_gems_staked,
             farmer_points_staked,
             farmer_reward_a,
             reenroll,
@@ -145,6 +154,7 @@ impl Farm {
         self.reward_b.update_accrued_reward_by_type(
             now_ts,
             self.rarity_points_staked,
+            farmer_gems_staked,
             farmer_points_staked,
             farmer_reward_b,
             reenroll,
@@ -468,6 +478,7 @@ impl FarmReward {
         &mut self,
         now_ts: u64,
         farm_rarity_points_staked: u64,
+        farmer_gems_staked: u64,
         farmer_rarity_points_staked: Option<u64>,
         farmer_reward: Option<&mut FarmerReward>,
         reenroll: bool,
@@ -491,6 +502,7 @@ impl FarmReward {
                     now_ts,
                     &mut self.times,
                     &mut self.funds,
+                    farmer_gems_staked,
                     farmer_rarity_points_staked.unwrap(),
                     farmer_reward.unwrap(),
                     reenroll,
