@@ -235,7 +235,7 @@ impl FixedRateSchedule {
         amount_staked: u64,
     ) -> Result<u64> {
         let per_rarity_point = self.reward_per_rarity_point(start_from, end_at)?;
-        let amount_staked_bonus = 100;
+        let mut amount_staked_bonus = 100;
         if amount_staked > 19 {
             amount_staked_bonus = 125;
         } else if amount_staked > 9 {
@@ -344,8 +344,8 @@ impl FixedRateReward {
         {
             let original_staking_start = self.graduate_farmer(
                 farmer_rarity_points_staked,
-                farmer_reward,
                 farmer_gems_staked,
+                farmer_reward,
             )?;
 
             // if desired, we roll them forward with original staking time
@@ -420,8 +420,8 @@ impl FixedRateReward {
     pub fn graduate_farmer(
         &mut self,
         farmer_rarity_points_staked: u64,
-        farmer_reward: &mut FarmerReward,
         farmer_gems_staked: u64,
+        farmer_reward: &mut FarmerReward,
     ) -> Result<u64> {
         let original_begin_staking_ts = farmer_reward.fixed_rate.begin_staking_ts;
 
