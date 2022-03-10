@@ -14,7 +14,6 @@ import { clusterApiUrl } from '@solana/web3.js';
 import { useSnackbar } from 'notistack';
 import React, { FC, ReactNode, useCallback, useMemo } from 'react';
 import { Theme } from './Theme';
-import { Button } from '@mui/material';
 import Home from './Components/Home';
 
 export const App: FC = () => {

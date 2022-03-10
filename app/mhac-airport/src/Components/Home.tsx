@@ -2,6 +2,7 @@ import { WalletMultiButton } from "@solana/wallet-adapter-material-ui"
 import React,  {useState} from "react"
 import { Typography, AppBar, Container, Paper, Button, Grid, Box, CssBaseline, Toolbar, Link } from "@mui/material"
 import CustomizedTables from './CustomizedTables'
+import tiers from './tiers.png'
 
 function Copyright() {
     return (
@@ -63,27 +64,28 @@ const Home = () => {
                                         onClick={() => {
                                             setState('show-table')
                                         }}
-                                        >How to Stake
+                                        >Take Flight
                                     </Button>
                                 </Grid>
-                                <Grid item xs={10}>
-                                    {state === 'start' && (
-                                        <Paper elevation={3} variant="outlined"> 
-                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                        </Paper>
-                                    )}
-                                    {state === 'show-table' && (
+                                {state === 'start' && (
+                                    <Grid item xs={12}>
+                                            <img src={tiers}></img>
+                                            <Paper elevation={3} variant="outlined"> 
+                                                <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                                <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                                <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                                <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                                <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                                <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                            </Paper>
+                                    </Grid>
+                                )}
+                                {state === 'show-table' && (
+                                    <Grid item xs={12}>                                     
                                         <CustomizedTables></CustomizedTables>
-                                    )}
-                                </Grid>
-
+                                    </Grid>
+                                )}
                             </Grid>                            
-
                         </div>
 
                     </Container>
