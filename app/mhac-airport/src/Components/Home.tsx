@@ -1,8 +1,7 @@
 import { WalletMultiButton } from "@solana/wallet-adapter-material-ui"
-import React from "react"
+import React,  {useState} from "react"
 import { Typography, AppBar, Container, Paper, Button, Grid, Box, CssBaseline, Toolbar, Link } from "@mui/material"
-
-
+import CustomizedTables from './CustomizedTables'
 
 function Copyright() {
     return (
@@ -18,6 +17,8 @@ function Copyright() {
   }
 
 const Home = () => {
+    const [state, setState] = useState('start')
+
     return (
         <>
         <Container maxWidth="lg">
@@ -46,36 +47,49 @@ const Home = () => {
                         <div>
                             <Grid container spacing={6} justifyContent="center">
                                 <Grid item>
-                                    <Button size="large" variant="contained">How to Stake</Button>
+                                    <Button 
+                                        size="large" 
+                                        variant="contained"
+                                        onClick={() => {
+                                            setState('start')
+                                        }}
+                                        >How to Stake
+                                    </Button>
                                 </Grid>
                                 <Grid item>
-                                    <Button size="large" variant="contained">All Aboard</Button>
+                                    <Button 
+                                        size="large" 
+                                        variant="contained"
+                                        onClick={() => {
+                                            setState('show-table')
+                                        }}
+                                        >How to Stake
+                                    </Button>
                                 </Grid>
                                 <Grid item xs={10}>
-                                    <Paper elevation={3} variant="outlined"> 
-                                        <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                        <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                        <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                        <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                        <Typography align="center" color="textPrimary"> Staking V2</Typography>
-                                        <Typography align="center" color="textPrimary"> Staking V2</Typography>
-
-                                    </Paper>
+                                    {state === 'start' && (
+                                        <Paper elevation={3} variant="outlined"> 
+                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                            <Typography align="center" color="textPrimary"> Staking V2</Typography>
+                                        </Paper>
+                                    )}
+                                    {state === 'show-table' && (
+                                        <CustomizedTables></CustomizedTables>
+                                    )}
                                 </Grid>
-                                <Grid item xs={10}>
-                                    <img></img>
 
-                                </Grid>
-            
-                            </Grid>
-                            
+                            </Grid>                            
 
                         </div>
 
                     </Container>
                 </div>
             </main>
-            <Box sx={{ bgcolor: 'background.paper', p: 2 }} component="footer">
+            <Box sx={{ bgcolor: 'secondary.main', p: 2 }} component="footer">
                 <Typography variant="h6" align="center" gutterBottom>
                     Footer
                 </Typography>
