@@ -33,7 +33,6 @@ const theme = createTheme({
             },
         },
     },
-    spacing: 4,
 });
 
 export const Theme: FC<{ children: ReactNode }> = ({ children }) => {
