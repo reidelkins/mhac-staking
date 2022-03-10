@@ -2,7 +2,6 @@ import { WalletMultiButton } from "@solana/wallet-adapter-material-ui"
 import React,  {useState} from "react"
 import { Typography, AppBar, Container, Paper, Button, Grid, Box, CssBaseline, Toolbar, Link } from "@mui/material"
 import CustomizedTables from './CustomizedTables'
-import tiers from './tiers.png'
 
 function Copyright() {
     return (
@@ -24,7 +23,7 @@ const Home = () => {
         <>
         <Container maxWidth="lg">
             <CssBaseline />
-            <AppBar position="fixed">
+            <AppBar position="fixed" style={{background: 'transparent'}}>
                 <Toolbar>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Ape Icon Here
@@ -69,7 +68,7 @@ const Home = () => {
                                 </Grid>
                                 {state === 'start' && (
                                     <Grid item xs={12}>
-                                            <img src={tiers}></img>
+                                            {/* <img src={tiers}></img> */}
                                             <Paper elevation={3} variant="outlined"> 
                                                 <Typography align="center" color="textPrimary"> Staking V2</Typography>
                                                 <Typography align="center" color="textPrimary"> Staking V2</Typography>
@@ -91,7 +90,7 @@ const Home = () => {
                     </Container>
                 </div>
             </main>
-            <Box sx={{ bgcolor: 'secondary.main', p: 2 }} component="footer">
+            <Box sx={{ p: 2 }} component="footer">
                 <Typography variant="h6" align="center" gutterBottom>
                     Footer
                 </Typography>

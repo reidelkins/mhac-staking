@@ -11,3 +11,11 @@ html, body {
     justify-content: center;
     align-items: center;
 }
+
+body {
+    background: url(mile_high_airline.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
