@@ -1,9 +1,12 @@
 /* Box sizing rules */
-/* *,
+
 *::before,
 *::after {
     box-sizing: border-box;
-} */
+}
+
+/* Hide scroll bar */
+::-webkit-scrollbar {display: none;}
 
 /* Remove default margin */
 body,

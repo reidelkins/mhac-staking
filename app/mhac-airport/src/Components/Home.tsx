@@ -21,8 +21,8 @@ const Home = () => {
 
     return (
         <>
+        <CssBaseline />
         <Grid  id="whole-app"  style={{ position: "relative", height: "80vh" }}>
-            <CssBaseline />
             <Grid 
                 id="appbar"
                 style={{ position: "sticky", top: 0, left: 0, right: 0 }}
@@ -50,7 +50,7 @@ const Home = () => {
                 id="main"
                 container
                 justifyContent="center"
-                style={{ height: "inherit", marginTop: 40}}
+                style={{ height: "inherit"}}
             >
             <main>
                 <div>
