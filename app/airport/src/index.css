@@ -1,0 +1,99 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #303030;
+  color: #000000;
+}
+
+body {
+  background: url('./assets/mile_high_airline.jpg') no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.box {
+  background-color: #79b4ff;
+  opacity: 0.7;
+}
+
+.firstBox {
+  background-color: #79b4ff;
+  opacity: 0.9;
+}
+
+.words {
+  font-family: 'Montserrat';
+  font-size: 1.5em;
+  font-weight: normal;
+}
+
+.titleWords {
+  font-family: 'Montserrat';
+  font-size: 2em;
+  font-weight: bolder;
+}
+
+.mainWords {
+  font-family: 'Montserrat';
+  font-size: 2.5em;
+  font-weight: bolder;
+}
+
+.header {
+  font-family: 'Bebas Neue';
+  color: #79b4ff;
+  font-weight: bolder;
+  font-size: 5em;
+  letter-spacing: 0.05em;
+  text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+.connectButton {
+  border-radius: 18px !important;
+  padding: 6px 16px;
+  max-width: 500px;
+  background-color: #79b4ff;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.refreshButton {
+  border-radius: 18px !important;
+  padding: 6px 16px;
+  max-width: 500px;
+  background-color: #ffffff;
+  margin: 5px;
+}
+
+.connectText {
+  font-family: 'Bebas Neue';
+  font-weight: bolder;
+  font-size: 2em;
+  letter-spacing: 2px;
+}
+
+.footer {
+  margin-top: 75px;
+  height: 100px;
+  background: #0a1118;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.footer h1 {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.buttonBorder {
+  border-color: black;
+  border-width: 3px;
+}
