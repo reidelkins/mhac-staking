@@ -252,24 +252,33 @@ impl FarmerFixedRateReward {
 
     /// (!) intentionally uses begin_staking_ts for both start_from and end_at
     /// in doing so we increase both start_from and end_at by exactly loyal_staker_bonus_time
-    pub fn voided_reward(&self, rarity_points: u64) -> Result<u64> {
+    //pub fn voided_reward(&self, rarity_points: u64) -> Result<u64> {
+    pub fn voided_reward(&self, rarity_points: u64, farmer_gems_staked: u64) -> Result<u64> {
         let start_from = self.time_from_staking_to_update()?;
         let end_at = self.end_schedule_ts()?.try_sub(self.begin_staking_ts)?;
 
         self.promised_schedule
-            .reward_amount(start_from, end_at, rarity_points)
+            //.reward_amount(start_from, end_at, rarity_points)
+            .reward_amount(start_from, end_at, rarity_points, farmer_gems_staked)
     }
 
     /// (!) intentionally uses begin_staking_ts for both start_from and end_at
     /// in doing so we increase both start_from and end_at by exactly loyal_staker_bonus_time
-    pub fn newly_accrued_reward(&self, now_ts: u64, rarity_points: u64) -> Result<u64> {
+    //pub fn newly_accrued_reward(&self, now_ts: u64, rarity_points: u64) -> Result<u64> {
+    pub fn newly_accrued_reward(
+        &self,
+        now_ts: u64,
+        rarity_points: u64,
+        farmer_gems_staked: u64,
+    ) -> Result<u64> {
         let start_from = self.time_from_staking_to_update()?;
         let end_at = self
             .reward_upper_bound(now_ts)?
             .try_sub(self.begin_staking_ts)?;
 
         self.promised_schedule
-            .reward_amount(start_from, end_at, rarity_points)
+            //.reward_amount(start_from, end_at, rarity_points)
+            .reward_amount(start_from, end_at, rarity_points, farmer_gems_staked)
     }
 }
 
@@ -334,14 +343,14 @@ mod tests {
         // last update - staking = 55
         // ub - staking = 110
         // reward accrues for a total of 55s, with 50s bonus and 5s coming from current staking period
-        assert_eq!((50 + 70 + 11 * 35) * 10, r.voided_reward(10).unwrap());
+        assert_eq!((50 + 70 + 11 * 35) * 10, r.voided_reward(10, 1).unwrap());
 
         // last update - staking = 55
         // now - staking = 85
         // reward accrues for a total of 30s, with 50s bonus and 5s coming from current staking period
         assert_eq!(
             (50 + 70 + 110) * 10,
-            r.newly_accrued_reward(185, 10).unwrap()
+            r.newly_accrued_reward(185, 10, 1).unwrap()
         );
     }
 
