@@ -6,11 +6,12 @@
         (toWalletNFTs && toWalletNFTs.length) ||
         (toVaultNFTs && toVaultNFTs.length)
       "
-      class="is-primary mr-5 connectButton connectText buttonBorder"
+      class="refreshButton connectText is-primary mb-5 buttonBorder"
       @click="moveNFTsOnChain"
     >
-      Move Gems!
+      Board/Deboard Apes!
     </button>
+    
     <slot />
   </div>
 
@@ -23,7 +24,7 @@
       :nfts="desiredWalletNFTs"
       @selected="handleWalletSelected"
     />
-
+    
     <!--mid-->
     <div class="m-2 flex flex-col">
       <ArrowButton
@@ -51,7 +52,7 @@
         v-if="vaultLocked"
         class="locked flex-col justify-center items-center align-center"
       >
-        <p class="mt-10">This vault is locked!</p>
+        <p class="mt-10 mainWords">This plane is in the air or refueling!</p>
       </div>
     </NFTGrid>
   </div>

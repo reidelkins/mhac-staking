@@ -1,30 +1,32 @@
 <template>
-  <div class="nes-container">
-    <div class="mb-2">Milez accrued: {{ reward.accruedReward }}</div>
-    <div class="mb-2">Milez paid: {{ reward.paidOutReward }}</div>
-    <div v-if="parseRewardType(farmReward) === 'variable'">
-    </div>
-    <div v-else>
-      <div class="mb-2">
-        Staking begins: {{ parseDate(reward.fixedRate.beginStakingTs) }}
-      </div>
-      <div class="mb-2">
-        Schedule begins: {{ parseDate(reward.fixedRate.beginScheduleTs) }}
-      </div>
-      <div class="mb-2">
-        Last updated: {{ parseDate(reward.fixedRate.lastUpdatedTs) }}
-      </div>
-      <div class="mb-2">
-        Promised duration: {{ reward.fixedRate.promisedDuration }}
-      </div>
-      <div class="mb-2">Promised schedule:</div>
-      <FixedScheduleDisplay
-        :key="farmReward"
-        class="ml-5"
-        :schedule="reward.fixedRate.promisedSchedule"
-      />
-    </div>
-  </div>
+  <table style="width:100%">
+    <tr valign="top">
+      <td style="width:40%">
+        <div class="mb-2 titleWords">Your MILEZ </div>
+        <div class="mb-2 words">Milez accrued: {{ reward.accruedReward/1000000 }}</div>
+        <div class="mb-2 words">Milez paid: {{ reward.paidOutReward/1000000 }}</div>
+        <div class="mb-2 words">
+          Last updated: {{ parseDate(reward.fixedRate.lastUpdatedTs) }}
+        </div>
+      </td>
+      <td>
+        <div v-if="parseRewardType(farmReward) === 'variable'">
+        </div>
+        <div v-else>
+          
+          
+          
+          <div class="mb-2 titleWords">MILEZ Rates:</div>
+          <FixedScheduleDisplay
+            :key="farmReward"
+            class="ml-5"
+            :schedule="reward.fixedRate.promisedSchedule"
+          />
+        </div>
+
+      </td>
+    </tr>
+  </table>
 </template>
 
 <script lang="ts">

@@ -2,7 +2,7 @@
   
     <div className="footer">
       <div className="flex">
-        <p>Copyright © Mile High Ape Club - 2022</p>
+        <p className="words">Copyright © Mile High Ape Club - 2022</p>
 
       </div>
       <div style="width:200px">
