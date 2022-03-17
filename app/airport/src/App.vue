@@ -7,7 +7,6 @@
       <p class="text-4xl pt-3 px-2 mt-1 underline header">Airlines</p>
     </div>
     <br>
-    <TheNavBar />
 
     <div class="p-10">
       <router-view />
