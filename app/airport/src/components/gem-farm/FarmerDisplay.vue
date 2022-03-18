@@ -1,14 +1,25 @@
 <template>
   <div class="nes-container with-title">
-    <div class="mb-5 mainWords">Flight Information</div>
+    
+    <table style="width:100%">
+      <tr>
+        <td style="width:30%">
+          <div class="mb-5 mainWords">Flight Information</div>
+        </td>
+        <td style="width:30%">
+          <div class="mb-5 mainWords">Planes in the Air: {{farmAcc.stakedFarmerCount }}</div>
+        </td>
+        <td style="width:30%">
+          <div class="mb-5 mainWords">Flying Apes: {{farmAcc.gemsStaked}}</div>
+        </td>
+      </tr>
+    </table>
     <table style="width:100%">
       <tr valign="top">
         <td class="mb-10" style="width=25%">
           <div class="mb-2">
             <div class="titleWords">Current Flight </div>
-            <p class="words" v-if="parseFarmerState(farmerAcc) === 'staked'">
-              The plane is currently in the air
-            </p>
+            <p class="words" v-if="parseFarmerState(farmerAcc) === 'staked'">The plane is currently in the air</p>
             <p class="words" v-else>
               The plane is currently on the ground
             </p>

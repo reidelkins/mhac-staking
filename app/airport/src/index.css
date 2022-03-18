@@ -72,6 +72,14 @@ body {
   margin: 5px;
 }
 
+.navText {
+  font-family: 'Bebas Neue';
+  font-weight: bolder;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color: #79b4ff;
+}
+
 .connectText {
   font-family: 'Bebas Neue';
   font-weight: bolder;
