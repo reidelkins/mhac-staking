@@ -1,13 +1,13 @@
 [programs.localnet]
-gem_bank = "AvUBeD6AAe1cG6MVytMYN1yqBrWZoaapc1JLDNbpC8qN"
-gem_farm = "9k22Xn2a9AJCnRsTNA3rCcwqi8hqQTXwqJ7ZS6X1kwQ7"
+gem_bank = "AAchXqCceMw6vCgo2BL1JhdjBLNGUmf3rpbhMeaUt1dM"
+gem_farm = "6WLTpV8DtL75Tn81Z82RMzp9qtK8TmxLkZkjY4eRTREf"
 
 [registry]
 url = "https://anchor.projectserum.com"
 
 [provider]
 cluster = "localnet"
-wallet = "./shared_keypair.json"
+wallet = "~/.config/solana/staking.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

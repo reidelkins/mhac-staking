@@ -20,6 +20,38 @@
         :vault="farmerAcc.vault.toBase58()"
         @selected-wallet-nft="handleNewSelectedNFT"
       >
+        
+        <button
+          v-if="farmerState === 'staked' && selectedNFTs.length > 0"
+          class="refreshButton connectText is-primary mb-5 buttonBorder"
+          @click="addGems"
+        >
+          Board/Deboard Selected Apes
+        </button>
+        <button
+          v-if="farmerState === 'unstaked'"
+          class="refreshButton connectText is-primary mb-5 buttonBorder"
+          @click="beginStaking"
+        >
+          Takeoff
+        </button>
+        <button
+          v-if="farmerState === 'staked'"
+          class="refreshButton connectText is-primary mb-5 buttonBorder"
+          @click="endStaking"
+        >
+          Land
+        </button>
+        <button
+          v-if="farmerState === 'pendingCooldown'"
+          class="refreshButton connectText is-primary mb-5 buttonBorder"
+          @click="endStaking"
+        >
+          End Refueling
+        </button>
+        <button class="refreshButton connectText is-primary mb-5 buttonBorder" @click="claim">
+          Claim {{ availableA/1000000 }} Milez
+        </button>
       </Vault>
     </div>
     <div v-else>
@@ -62,7 +94,7 @@ export default defineComponent({
     });
 
     // --------------------------------------- farmer details
-    const farm = ref<string>("HfV8T9hnGYNe78tGYu4QGe4E95Z6RZ1hDo9HkP6h3on");
+    const farm = ref<string>("6JMtpk6dQ2bjUf1srU8Gr2Lmd2kvGfcBQTVqZwuKArsR");
     const farmAcc = ref<any>();
 
     const farmerIdentity = ref<string>();
@@ -105,7 +137,7 @@ export default defineComponent({
     };
 
     const freshStart = async () => {
-      //console.log(`Cluster: ${cluster.value}`)
+      console.log(`Cluster: ${cluster.value}`)
       if (getWallet() && getConnection()) {
         gf = await initGemFarm(getConnection(), getWallet()!);
         farmerIdentity.value = getWallet()!.publicKey?.toBase58();
@@ -127,12 +159,14 @@ export default defineComponent({
     };
 
     const initFarmer = async () => {
+      //console.log(`Cluster: ${cluster.value}`)
       await gf.initFarmerWallet(new PublicKey(farm.value!));
       await fetchFarmer();
     };
 
     // --------------------------------------- staking
     const beginStaking = async () => {
+      console.log("say hello");
       await gf.stakeWallet(new PublicKey(farm.value!));
       await fetchFarmer();
       selectedNFTs.value = [];

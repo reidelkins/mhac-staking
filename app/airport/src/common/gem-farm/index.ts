@@ -239,7 +239,7 @@ export class GemFarm extends GemFarmClient {
       this.wallet.publicKey
     );
 
-    //console.log('initialized new farmer', this.wallet.publicKey.toBase58());
+    console.log('New plane with tail #', this.wallet.publicKey.toBase58());
 
     return result;
   }
@@ -247,7 +247,7 @@ export class GemFarm extends GemFarmClient {
   async stakeWallet(farm: PublicKey) {
     const result = await this.stake(farm, this.wallet.publicKey);
 
-    //console.log('begun staking for farmer', this.wallet.publicKey.toBase58());
+    console.log('Landing from plane #', this.wallet.publicKey.toBase58());
 
     return result;
   }
@@ -255,7 +255,7 @@ export class GemFarm extends GemFarmClient {
   async unstakeWallet(farm: PublicKey) {
     const result = await this.unstake(farm, this.wallet.publicKey);
 
-    //console.log('ended staking for farmer', this.wallet.publicKey.toBase58());
+    console.log('Takeoff from plane #', this.wallet.publicKey.toBase58());
 
     return result;
   }
