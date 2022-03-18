@@ -23,7 +23,7 @@ export default defineComponent({
 
     const menu = [
       { name: 'Airline Rules', url: '/' },
-      { name: 'Boarding Apes', url: '/plane' },
+      { name: 'Boarding Apes', url: '/' },
     ];
 
     return {

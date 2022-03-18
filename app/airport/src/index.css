@@ -30,19 +30,16 @@ body {
 
 .words {
   font-family: 'Montserrat';
-  font-size: 1.5em;
   font-weight: normal;
 }
 
 .titleWords {
   font-family: 'Montserrat';
-  font-size: 2em;
   font-weight: bolder;
 }
 
 .mainWords {
   font-family: 'Montserrat';
-  font-size: 2.5em;
   font-weight: bolder;
 }
 
@@ -50,8 +47,7 @@ body {
   font-family: 'Bebas Neue';
   color: #79b4ff;
   font-weight: bolder;
-  font-size: 5em;
-  letter-spacing: 0.05em;
+
   text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
@@ -75,7 +71,6 @@ body {
 .navText {
   font-family: 'Bebas Neue';
   font-weight: bolder;
-  font-size: 2em;
   letter-spacing: 2px;
   color: #79b4ff;
 }
@@ -83,7 +78,6 @@ body {
 .connectText {
   font-family: 'Bebas Neue';
   font-weight: bolder;
-  font-size: 2em;
   letter-spacing: 2px;
 }
 
@@ -97,7 +91,6 @@ body {
   justify-content: space-evenly;
 }
 .footer h1 {
-  font-size: 14px;
   font-weight: 400;
 }
 

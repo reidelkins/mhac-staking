@@ -1,10 +1,9 @@
 <template>
   <div class="relative h-full min-h-screen">
-    
-    <div class="pt-10 px-10 flex justify-center align-middle">
-      <p class="text-4xl pt-3 px-1 mt-1 underline header">Mile High</p>
+    <div class="flex flex-nowrap pt-10 px-10 flex justify-center align-middle">
+      <p class="text-2xl md:text-7xl sm:text-4xl pt-3 px-2 mt-1 underline header">Mile High</p>
       <a href="https://www.milehighapeclub.com" target="_blank" rel="noopener noreferrer"><img :width="120" :height="120" src="./assets/logo.png" /></a>
-      <p class="text-4xl pt-3 px-2 mt-1 underline header">Airlines</p>
+      <p class="text-2xl md:text-7xl sm:text-4xl pt-3 px-2 mt-1 underline header">Airlines</p>
     </div>
     <br>
 
