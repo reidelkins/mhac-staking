@@ -2,13 +2,13 @@
   <div>
     <div class="flex flex-row justify-center align-middle">
       <button
-        class="refreshButton navText mb-10 nav-button"
+        class="refreshButton navText mb-10 nav-button text-2xl"
         v-on:click="setRules"
       >
         Welcome Gate
       </button>
       <button
-        class="refreshButton navText mb-10 nav-button"
+        class="refreshButton navText mb-10 nav-button text-2xl"
         v-on:click="setBoarding"
       >
         Boarding Apes

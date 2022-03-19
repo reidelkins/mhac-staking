@@ -39,9 +39,13 @@
         />
       </div>
     </div>
-    <button class="refreshButton connectText is-primary mb-5 buttonBorder" @click="refreshFarmer">
-          Check Flight Progress
-    </button>
+    <div class="flex content-center">
+      <div class="ml-5">
+        <button class="refreshButton connectText is-primary mb-5 buttonBorder" @click="refreshFarmer">
+              Check Flight Progress
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
