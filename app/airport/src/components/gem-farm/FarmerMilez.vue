@@ -1,18 +1,10 @@
 <template>
-
-      <div v-if="parseRewardType(farmReward) === 'variable'">
-      </div>
-      <div v-else>
-        
-        
-        
-        <div class="mb-2 titleWords text-2xl">MILEZ Rates</div>
-        <FixedScheduleDisplay
-          :key="farmReward"
-          class="ml-1"
-          :schedule="reward.fixedRate.promisedSchedule"
-        />
-      </div>
+    <div class="mb-2 titleWords text-2xl">Your MILEZ </div>
+    <div class="mb-2 words">Milez accrued: {{ reward.accruedReward/1000000 }}</div>
+    <div class="mb-2 words">Milez paid: {{ reward.paidOutReward/1000000 }}</div>
+    <div class="mb-2 words">
+        Last updated: {{ parseDate(reward.fixedRate.lastUpdatedTs) }}
+    </div>
 </template>
 
 <script lang="ts">
