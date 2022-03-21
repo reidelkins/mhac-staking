@@ -48,6 +48,7 @@ module.exports = {
     },
   },
   variants: {
+    opacity: ({ after }) => after(['disabled']),
     extend: {
       backgroundColor: ['checked'],
       borderColor: ['checked'],

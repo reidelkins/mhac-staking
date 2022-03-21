@@ -9,7 +9,7 @@
       class="refreshButton connectText is-primary mb-5 buttonBorder"
       @click="moveNFTsOnChain"
     >
-      Board/Deboard Apes!
+      Finalize board/disembark! 
     </button>
     
     <slot />
@@ -27,22 +27,30 @@
       />
     </div>
     <!--mid-->
-    <div>
-      <Button
-        :disabled="vaultLocked"
-        class="refreshButton navText nav-button text-2xl "
-        :left="true"
-        @click="moveNFTsFE(true)"
-      >Deplane</Button>
-      <br>
-      <br>
-      <Button
-        :disabled="vaultLocked"
-        class="refreshButton navText nav-button text-2xl"
-        @click="moveNFTsFE(false)"
+    <div class="nft-control">
+      <div class="inline-flex rounded-md shadow-sm" role="group">
+        <Button
+          :disabled="vaultLocked"
+          class="refreshButton navText nav-button text-2xl disabled:opacity-50"
+          :left="true"
+          @click="moveNFTsFE(true)"
+        >Disembark</Button>
+        <br>
+        <br>
+        <Button
+          :disabled="vaultLocked"
+          class="refreshButton navText nav-button text-2xl disabled:opacity-50"
+          @click="moveNFTsFE(false)"
+        >
+          Board
+        </Button>
+      </div>
+      <div
+        v-if="vaultLocked"
+        class= "navText text-2xl"
       >
-        Board
-      </Button>
+        Plane is currently in the air or refueling
+      </div>
     </div>
     <!--right-->
     <div class="row-span-2">
@@ -53,13 +61,18 @@
         :nfts="desiredVaultNFTs"
         @selected="handleVaultSelected"
       />
-    </div>
+
+
+
+      <!--
       <div
         v-if="vaultLocked"
         class="locked flex-col justify-center items-center align-center"
       >
         <p class="mt-10 mainWords">This plane is in the air or refueling!</p>
       </div>
+      -->
+    </div>
   </div>
 </template>
 
