@@ -27,7 +27,7 @@
       />
     </div>
     <!--mid-->
-    <div class="nft-control">
+    <div class="mx-auto">
       <div class="inline-flex rounded-md shadow-sm" role="group">
         <Button
           :disabled="vaultLocked"
@@ -35,8 +35,6 @@
           :left="true"
           @click="moveNFTsFE(true)"
         >Disembark</Button>
-        <br>
-        <br>
         <Button
           :disabled="vaultLocked"
           class="refreshButton navText nav-button text-2xl disabled:opacity-50"
