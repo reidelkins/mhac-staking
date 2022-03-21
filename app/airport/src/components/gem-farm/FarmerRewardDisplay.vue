@@ -5,6 +5,8 @@
         <div class="mb-2 titleWords">Your MILEZ </div>
         <div class="mb-2 words">Milez accrued: {{ reward.accruedReward/1000000 }}</div>
         <div class="mb-2 words">Milez paid: {{ reward.paidOutReward/1000000 }}</div>
+        <div class="mb-2 words">Milez currently available: {{ reward.accruedReward/1000000 - reward.paidOutReward/1000000 }}</div>
+        <div class="mb-2 words">Your earning rate: (COMING SOON)</div>
         <div class="mb-2 words">
           Last updated: {{ parseDate(reward.fixedRate.lastUpdatedTs) }}
         </div>

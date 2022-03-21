@@ -26,7 +26,7 @@
       <p class="mt-2 px-10 words">5. You will have to Approve a Transaction for Each Boarding Ape</p>
 
       <p class="mt-5 px-5 titleWords">How do I Begin Earning $milez?</p>
-      <p class="mt-2 px-10 words">1. Once Your Apes have Boarded, You are Cleared for Takeoff!</p>
+      <p class="mt-2 px-10 words">1. Once Your Apes have Boarded, You are Cleared for Takeoff! So when you want to begin earning $MILEZ, please press the "Takeoff" button.</p>
       <p class="mt-2 px-10 words">2. As soon as the Plane is in the Air, Your Apes will Begin Earning $milez</p>
       <p class="mt-2 px-10 words">3. The Base Rate for a Boarded Ape is 10 $milez per day</p>
       <p class="mt-2 px-10 words">4. To see the $milez You Have Earned so Far, Click "Check Flight Progress"</p>
