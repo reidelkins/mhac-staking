@@ -56,7 +56,7 @@ img {
 }
 
 .card-selected {
-  @apply border-4 border-solid;
+  @apply border-4 border-solid opacity-50;
   border-color: black !important;
 }
 </style>

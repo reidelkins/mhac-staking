@@ -27,8 +27,8 @@
       />
     </div>
     <!--mid-->
-    <div class="mx-auto">
-      <div class="inline-flex rounded-md shadow-sm" role="group">
+    <div class="mx-auto p-2">
+      <div class="inline-flex rounded-md shadow-sm " role="group">
         <Button
           :disabled="vaultLocked"
           class="refreshButton navText nav-button text-2xl disabled:opacity-50"

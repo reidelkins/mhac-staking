@@ -9,7 +9,7 @@
 
       <div class="shadow-lg bg-blue-200 p-4 rounded-lg">
         <div class="mb-2">
-          <div class="titleWords text-2xl">Current Flight </div>
+          <div class="titleWords text-2xl mb-2">Current Flight </div>
           <p class="words" v-if="parseFarmerState(farmerAcc) === 'staked'">The plane is currently in the air</p>
           <p class="words" v-else>
             The plane is currently on the ground
