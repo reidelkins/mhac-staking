@@ -32,16 +32,19 @@ body {
 .words {
   font-family: 'Montserrat';
   font-weight: normal;
+  text-align: center;
 }
 
 .titleWords {
   font-family: 'Montserrat';
   font-weight: bolder;
+  text-align: center;
 }
 
 .mainWords {
   font-family: 'Montserrat';
   font-weight: bolder;
+  text-align: center;
 }
 
 .header {

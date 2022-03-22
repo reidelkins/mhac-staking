@@ -49,8 +49,8 @@
       <p class="mt-5  words">The Minimum Flight Time is 3 days</p>
       <p class="mt-5  words">After a Flight Lands, it Takes 1 Day to Refuel Before it Can Depart Again.</p>
       <p class="mt-5  words">If you board or deboard an ape and it does not show up, refresh the page and it should appear.</p>
-      <p class="mt-5  words">Currently, All of Your NFTs will be Waiting in Line in the Terminal. If you Try to board non-MHAC Apes onto the Plane, You will see an E.rror</p>
-      <p class="mt-5  words">If You Found a Bug or have an Issue, Please Open a Ticket in the MHAC discord. Include Your Wallet Address and the Console Log's Error Messages</p>
+      <p class="mt-5  words">Currently, All of Your NFTs will be Waiting in Line in the Terminal. If you Try to board non-MHAC Apes onto the Plane, You will see an Error.</p>
+      <p class="mt-5  words">If You Found a Bug or have an Issue, Please Open a Ticket in the MHAC discord. Include Your Wallet Address and the Console Log's Error Messages.</p>
       <p class="mt-5  words" style="font-weight: bolder">Please Note, this has not yet been Tested on Mobile. For the Moment, Your Flight Attendants Strongly Urge You to Use Your Larger Electronics Prior to Takeoff.</p>
 
       

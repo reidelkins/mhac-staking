@@ -2,7 +2,7 @@
   <div class="container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6 p-5">
       <div class="shadow-lg bg-blue-200 p-4 rounded-lg">
-        <div class="mb-5 mainWords text-2xl">Mile High Airlines Data</div>
+        <div class="mb-5 mainWords text-2xl">Mile High Airlines</div>
         <div class="mb-5 mainWords text-lg">Planes in the Air: {{farmAcc.stakedFarmerCount }}</div>
         <div class="mb-5 mainWords text-lg">Flying Apes: {{farmAcc.gemsStaked}}</div>
       </div>
