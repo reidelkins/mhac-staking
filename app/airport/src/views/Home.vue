@@ -16,7 +16,7 @@
     </div>
     <br>
     <br>
-    <div v-if="page === 'home'" class="pl-5 mb-10 box buttonBorder nav-button rounded-xl">
+    <div v-if="page === 'home'" class="mb-10 box buttonBorder nav-button rounded-xl">
       <h1 class="mt-5 mainWords text-xl md:text-2xl">Welcome to Mile High Airlines</h1>    
       <p class="mt-10 titleWords text-lg md:text-xl">How Do My Apes Board?</p>
       <p class="mt-2  words ">1. Click on the "Boarding Apes" button above</p>
