@@ -47,8 +47,8 @@ img {
 }
 
 .card {
-  width: 150px;
-  height: 150px;
+  width: 30%;
+  height: 30%;
 }
 
 .card:hover {
@@ -56,7 +56,7 @@ img {
 }
 
 .card-selected {
-  @apply border-4 border-solid;
+  @apply border-4 border-solid opacity-50;
   border-color: black !important;
 }
 </style>

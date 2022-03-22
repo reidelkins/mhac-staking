@@ -1,7 +1,7 @@
 <template>
   <button :disabled="disabled">
     <img
-      src="../assets/arrow.png"
+      src="../assets/ape_arrow.png"
       alt="right"
       :width="100"
       :height="100"

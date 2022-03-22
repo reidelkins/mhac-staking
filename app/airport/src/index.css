@@ -32,16 +32,19 @@ body {
 .words {
   font-family: 'Montserrat';
   font-weight: normal;
+  text-align: center;
 }
 
 .titleWords {
   font-family: 'Montserrat';
   font-weight: bolder;
+  text-align: center;
 }
 
 .mainWords {
   font-family: 'Montserrat';
   font-weight: bolder;
+  text-align: center;
 }
 
 .header {
@@ -80,6 +83,7 @@ body {
   font-family: 'Bebas Neue';
   font-weight: bolder;
   letter-spacing: 2px;
+  font-size: 1.5rem;
 }
 
 .footer {
@@ -94,7 +98,6 @@ body {
 .footer h1 {
   font-weight: 400;
 }
-
 .buttonBorder {
   border-color: black;
   border-width: 3px;

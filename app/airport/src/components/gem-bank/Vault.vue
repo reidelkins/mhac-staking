@@ -9,52 +9,68 @@
       class="refreshButton connectText is-primary mb-5 buttonBorder"
       @click="moveNFTsOnChain"
     >
-      Board/Deboard Apes!
+      Finalize board/disembark! 
     </button>
     
     <slot />
   </div>
 
   <!--wallet + vault view-->
-  <div class="flex items-stretch">
+  <div class="grid grid-cols-1 md:grid-cols-3">
     <!--left-->
-    <NFTGrid
-      title="vault"
-      class="flex-1 box"
-      :nfts="desiredWalletNFTs"
-      @selected="handleWalletSelected"
-    />
-    
-    <!--mid-->
-    <div class="m-2 flex flex-col">
-      <ArrowButton
-        :disabled="vaultLocked"
-        class="my-2"
-        @click="moveNFTsFE(false)"
-      />
-      <ArrowButton
-        :disabled="vaultLocked"
-        class="my-2"
-        :left="true"
-        @click="moveNFTsFE(true)"
+    <div class="row-span-2">    
+      <NFTGrid
+        title="vault"
+        class="flex-1 box"
+        :nfts="desiredWalletNFTs"
+        @selected="handleWalletSelected"
       />
     </div>
-
+    <!--mid-->
+    <div class="mx-auto p-2">
+      <div class="inline-flex rounded-md shadow-sm " role="group">
+        <Button
+          :disabled="vaultLocked"
+          class="refreshButton navText nav-button text-2xl disabled:opacity-50"
+          :left="true"
+          @click="moveNFTsFE(true)"
+        >Disembark</Button>
+        <Button
+          :disabled="vaultLocked"
+          class="refreshButton navText nav-button text-2xl disabled:opacity-50"
+          @click="moveNFTsFE(false)"
+        >
+          Board
+        </Button>
+      </div>
+      <div
+        v-if="vaultLocked"
+        class= "navText text-2xl"
+      >
+        Plane is currently in the air or refueling
+      </div>
+    </div>
     <!--right-->
-    <NFTGrid
-      v-if="bank && vault"
-      title="wallet"
-      class="flex-1 box"
-      :nfts="desiredVaultNFTs"
-      @selected="handleVaultSelected"
-    >
+    <div class="row-span-2">
+      <NFTGrid
+        v-if="bank && vault"
+        title="wallet"
+        class="flex-1 box"
+        :nfts="desiredVaultNFTs"
+        @selected="handleVaultSelected"
+      />
+
+
+
+      <!--
       <div
         v-if="vaultLocked"
         class="locked flex-col justify-center items-center align-center"
       >
         <p class="mt-10 mainWords">This plane is in the air or refueling!</p>
       </div>
-    </NFTGrid>
+      -->
+    </div>
   </div>
 </template>
 
