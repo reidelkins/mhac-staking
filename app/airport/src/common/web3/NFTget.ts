@@ -40,7 +40,7 @@ async function getNFTMetadata(
   try {
     const metadataPDA = await Metadata.getPDA(mint);
     const onchainMetadata = (await Metadata.load(conn, metadataPDA)).data;
-    console.log(onchainMetadata.data)
+    // console.log(onchainMetadata.data)
     if (onchainMetadata.data.symbol != selector) {
       console.log(`Ignoring non MHAC NFTs with symbol ${onchainMetadata.data.symbol}`)
       return null;
@@ -64,7 +64,7 @@ export async function getNFTMetadataForMany(
   const promises: Promise<INFT | undefined | null>[] = [];
   tokens.forEach((t) => promises.push(getNFTMetadata(t.mint, conn, "MHAC", t.pubkey)));
   const nfts = (await Promise.all(promises)).filter((n) => !!n);
-  console.log(`found ${nfts.length} metadatas`);
+  // console.log(`found ${nfts.length} metadatas`);
 
   return nfts as INFT[];
 }

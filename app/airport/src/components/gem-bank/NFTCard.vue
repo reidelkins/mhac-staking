@@ -1,6 +1,6 @@
 <template>
   <div
-    class="m-1 card flex justify-center"
+    class="m-1 nft-card flex justify-center"
     :class="{ 'card-selected': selected }"
     @click="toggleSelect"
   >
@@ -47,8 +47,8 @@ img {
 }
 
 .card {
-  width: 30%;
-  height: 30%;
+  width: 25%;
+  height: 25%;
 }
 
 .card:hover {
