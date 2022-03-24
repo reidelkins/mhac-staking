@@ -18,13 +18,24 @@
   <!--wallet + vault view-->
   <div class="grid grid-cols-1 md:grid-cols-3">
     <!--left-->
-    <div class="row-span-2">    
+    <div 
+      class="row-span-2"
+    > 
       <NFTGrid
         title="vault"
         class="flex-1 box"
         :nfts="desiredWalletNFTs"
         @selected="handleWalletSelected"
       />
+      <div 
+        v-if="walletLoading"
+      >    
+        <div class="flex justify-center items-center">
+          <div class="spinner-border animate-spin inline-block w-16 h-16 border-4 rounded-full" role="status">
+            <img src="../../assets/banana-loading.png">
+          </div>
+        </div>
+      </div>
     </div>
     <!--mid-->
     <div class="mx-auto p-2">
@@ -59,9 +70,15 @@
         :nfts="desiredVaultNFTs"
         @selected="handleVaultSelected"
       />
-
-
-
+      <div 
+        v-if="vaultLoading"
+      >    
+        <div class="flex justify-center items-center">
+          <div class="spinner-border animate-spin inline-block w-16 h-16 border-4 rounded-full" role="status">
+            <img src="../../assets/banana-loading.png">
+          </div>
+        </div>
+      </div>
       <!--
       <div
         v-if="vaultLocked"
@@ -114,6 +131,9 @@ export default defineComponent({
     //moved over onchain
     const toWalletNFTs = ref<INFT[]>([]);
     const toVaultNFTs = ref<INFT[]>([]);
+    //loading state
+    let walletLoading = ref(false)
+    let vaultLoading = ref(false)
 
     // --------------------------------------- populate initial nfts
 
@@ -122,12 +142,14 @@ export default defineComponent({
       currentWalletNFTs.value = [];
       selectedWalletNFTs.value = [];
       desiredWalletNFTs.value = [];
+      walletLoading.value = true;
 
       if (getWallet()) {
         currentWalletNFTs.value = await getNFTsByOwner(
           getWallet()!.publicKey!,
           getConnection()
         );
+        walletLoading.value = false;
         desiredWalletNFTs.value = [...currentWalletNFTs.value];
       }
     };
@@ -138,10 +160,12 @@ export default defineComponent({
       selectedVaultNFTs.value = [];
       desiredVaultNFTs.value = [];
 
+
       const foundGDRs = await gb.fetchAllGdrPDAs(vault.value);
       if (foundGDRs && foundGDRs.length) {
         gdrs.value = foundGDRs;
         console.log(`found a total of ${foundGDRs.length} gdrs`);
+        vaultLoading.value = true;
 
         const mints = foundGDRs.map((gdr: any) => {
           return { mint: gdr.account.gemMint };
@@ -151,6 +175,7 @@ export default defineComponent({
           getConnection()
         );
         desiredVaultNFTs.value = [...currentVaultNFTs.value];
+        vaultLoading.value = false;
         //console.log(`populated a total of ${currentVaultNFTs.value.length} vault NFTs`);
       }
     };
@@ -312,6 +337,8 @@ export default defineComponent({
       // eslint-disable-next-line vue/no-dupe-keys
       vault,
       vaultLocked,
+      walletLoading,
+      vaultLoading,
     };
   },
 });

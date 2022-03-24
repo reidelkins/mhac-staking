@@ -35,7 +35,7 @@ async function getNFTMetadata(
   conn: Connection,
   selector: string,
   pubkey?: string
-): Promise<INFT | undefined> {
+): Promise<INFT | undefined | null> {
   // console.log('Pulling metadata for:', mint);
   try {
     const metadataPDA = await Metadata.getPDA(mint);
@@ -43,7 +43,7 @@ async function getNFTMetadata(
     console.log(onchainMetadata.data)
     if (onchainMetadata.data.symbol != selector) {
       console.log(`Ignoring non MHAC NFTs with symbol ${onchainMetadata.data.symbol}`)
-      return
+      return null;
     }
     const externalMetadata = (await axios.get(onchainMetadata.data.uri)).data;
     return {
@@ -61,7 +61,7 @@ export async function getNFTMetadataForMany(
   tokens: any[],
   conn: Connection
 ): Promise<INFT[]> {
-  const promises: Promise<INFT | undefined>[] = [];
+  const promises: Promise<INFT | undefined | null>[] = [];
   tokens.forEach((t) => promises.push(getNFTMetadata(t.mint, conn, "MHAC", t.pubkey)));
   const nfts = (await Promise.all(promises)).filter((n) => !!n);
   console.log(`found ${nfts.length} metadatas`);
