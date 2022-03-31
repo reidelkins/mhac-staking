@@ -51,7 +51,6 @@ body {
   font-family: 'Bebas Neue';
   color: #79b4ff;
   font-weight: bolder;
-
   text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
 }
 
@@ -85,6 +84,13 @@ body {
   letter-spacing: 2px;
   font-size: 1.5rem;
 }
+.cardTitle {
+  font-family: 'Bebas Neue';
+  font-weight: bolder;
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  text-align: center;
+}
 
 .footer {
   margin-top: 75px;
@@ -95,10 +101,33 @@ body {
   align-items: center;
   justify-content: space-evenly;
 }
+
 .footer h1 {
   font-weight: 400;
 }
+
 .buttonBorder {
   border-color: black;
   border-width: 3px;
+}
+
+.nft-card {
+  width: 30%;
+  height: 30%;
+}
+
+.nft-card:hover {
+  @apply border-4 border-solid border-gray-200;
+}
+
+.card-selected {
+  @apply border-4 border-solid opacity-50;
+  border-color: black !important;
+}
+
+.nftGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }

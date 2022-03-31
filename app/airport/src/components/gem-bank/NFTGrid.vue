@@ -1,14 +1,14 @@
 <template>
-  <div class="nes-container with-title">
+  <div class="nes-container with-title rounded-lg">
 
     <div v-if="title === 'vault'">
-      <p class="connectText">Apes Still in the Terminal</p>
+      <p class="cardTitle">Apes Still in the Terminal</p>
     </div>
     <div v-else>
-      <p class="connectText">Boarded Apes</p>
+      <p class="cardTitle">Boarded Apes</p>
     </div>
     <slot />
-    <div class="flex flex-wrap">
+    <div class="nftGrid">
       <NFTCard
         v-for="nft in nfts"
         :key="nft"
