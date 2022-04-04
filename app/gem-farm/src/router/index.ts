@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import Farmer from '@/views/Farmer.vue';
 import Manager from '@/views/Manager.vue';
 import Home from '@/views/Home.vue';
+import Test from '@/views/Test.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,6 +19,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/farmer',
     name: 'Farmer',
     component: Farmer,
+  },
+  {
+    path: '/list-farmers',
+    name: 'List Farmers',
+    component: Test,
   },
 ];
 

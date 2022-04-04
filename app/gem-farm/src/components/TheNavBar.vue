@@ -25,6 +25,8 @@ export default defineComponent({
       { name: '/', url: '/' },
       { name: 'FARM MANAGER', url: '/manager' },
       { name: 'FARMER', url: '/farmer' },
+      { name: 'LIST FARMERS', url: '/list-farmers' },
+
     ];
 
     return {
