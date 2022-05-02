@@ -5,7 +5,6 @@ import {
   getSolflareWebWallet,
   getSolletExtensionWallet,
   getSolletWallet,
-  getSlopeWallet,
   Wallet,
   WalletName,
 } from '@solana/wallet-adapter-wallets';
@@ -21,7 +20,6 @@ const walletMapping = {
   'Sollet (Extension)': getSolletExtensionWallet,
   Solflare: getSolflareWallet,
   'Solflare (Web)': getSolflareWebWallet,
-  Slope: getSlopeWallet,
 };
 
 export default function useWallet() {

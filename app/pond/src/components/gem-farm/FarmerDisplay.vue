@@ -2,26 +2,26 @@
   <div class="container mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6 p-5">
       <div class="shadow-lg bg-blue-200 p-4 rounded-lg">
-        <div class="mb-5 mainWords text-2xl">Mile High Airlines</div>
-        <div class="mb-5 mainWords text-lg">Planes in the Air: {{farmAcc.stakedFarmerCount }}</div>
-        <div class="mb-5 mainWords text-lg">Flying Apes: {{farmAcc.gemsStaked}}</div>
+        <div class="mb-5 mainWords text-2xl">Dapper Ponds</div>
+        <div class="mb-5 mainWords text-lg">Ponds: {{farmAcc.stakedFarmerCount }}</div>
+        <div class="mb-5 mainWords text-lg">Ducks Swimming: {{farmAcc.gemsStaked}}</div>
       </div>
 
       <div class="shadow-lg bg-blue-200 p-4 rounded-lg">
         <div class="mb-2">
-          <div class="titleWords text-2xl mb-2">Current Flight </div>
-          <p class="words" v-if="parseFarmerState(farmerAcc) === 'staked'">The plane is currently in the air</p>
+          <div class="titleWords text-2xl mb-2">Current Pond </div>
+          <p class="words" v-if="parseFarmerState(farmerAcc) === 'staked'">Ducks are swimming</p>
           <p class="words" v-else>
-            The plane is currently on the ground
+            Ducks are drying off
           </p>
         </div>
         
-        <div class="mb-2 words">Apes boarded:  {{ farmerAcc.gemsStaked }}</div>
+        <div class="mb-2 words">Ducks Swimming:  {{ farmerAcc.gemsStaked }}</div>
         <div class="mb-2 words">
-          Flight is first able to land at {{ parseDate(farmerAcc.minStakingEndsTs) }}
+          Ducks can leave the pond at {{ parseDate(farmerAcc.minStakingEndsTs) }}
         </div>
         <div class="mb-5 words">
-          Refueling ends at {{ parseDate(farmerAcc.cooldownEndsTs) }}
+          Feeding time ends at {{ parseDate(farmerAcc.cooldownEndsTs) }}
         </div>   
       </div>
       <div class="shadow-lg bg-blue-200 p-4 rounded-lg">
@@ -44,7 +44,7 @@
     <div class="flex content-center">
       <div class="ml-5">
         <button class="refreshButton connectText is-primary mb-5 buttonBorder" @click="refreshFarmer">
-              Check Flight Progress
+              Check $EGGZ
         </button>
       </div>
     </div>

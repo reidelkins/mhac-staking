@@ -26,31 +26,31 @@
           class="refreshButton connectText is-primary mb-5 buttonBorder"
           @click="addGems"
         >
-          Board/Deboard Selected Apes
+          Enter/Exit the Pond
         </button>
         <button
           v-if="farmerState === 'unstaked'"
           class="refreshButton connectText is-primary mb-5 buttonBorder"
           @click="beginStaking"
         >
-          Takeoff
+          Dive In
         </button>
         <button
           v-if="farmerState === 'staked'"
           class="refreshButton connectText is-primary mb-5 buttonBorder"
           @click="endStaking"
         >
-          Land
+          Stop Swimming
         </button>
         <button
           v-if="farmerState === 'pendingCooldown'"
           class="refreshButton connectText is-primary mb-5 buttonBorder"
           @click="endStaking"
         >
-          End Refueling
+          Stop Eating
         </button>
         <button class="refreshButton connectText is-primary mb-5 buttonBorder" @click="claim">
-          Claim {{ availableA/1000000 }} Milez
+          Claim {{ availableA/1000000000 }} EGGZ
         </button>
       </Vault>
     </div>
@@ -58,7 +58,7 @@
       <br>
       <div class="w-full text-center words">
         <button class="connectButton is-primary buttonBorder" style="border-color:black" @click="initFarmer">
-          NO ACCOUNT FOR THIS ADDRESS<br> CLICK HERE TO MAKE ONE
+          NO STAKING ACCOUNT FOR THIS ADDRESS<br> CLICK HERE TO MAKE ONE
         </button>
       </div>
     </div>
@@ -94,7 +94,7 @@ export default defineComponent({
     });
 
     // --------------------------------------- farmer details
-    const farm = ref<string>("6JMtpk6dQ2bjUf1srU8Gr2Lmd2kvGfcBQTVqZwuKArsR");
+    const farm = ref<string>("5XvPtAJdfUhAm3r4qxKyw5rTkfZ6TQUykAjrRsWGDYTv");
     const farmAcc = ref<any>();
 
     const farmerIdentity = ref<string>();
@@ -133,7 +133,7 @@ export default defineComponent({
       farmerAcc.value = await gf.fetchFarmerAcc(farmerPDA);
       farmerState.value = gf.parseFarmerState(farmerAcc.value);
       await updateAvailableRewards();
-      //console.log(`farmer found at ${farmerIdentity.value}:`, stringifyPKsAndBNs(farmerAcc.value));
+      console.log(`farmer found at ${farmerIdentity.value}:`, stringifyPKsAndBNs(farmerAcc.value));
     };
 
     const freshStart = async () => {
@@ -153,7 +153,7 @@ export default defineComponent({
           await fetchFarm();
           await fetchFarmer();
         } catch (e) {
-          console.log(`Plane ${farm.value!} not found`);
+          console.log(`Pond ${farm.value!} not found`);
         }
       }
     };

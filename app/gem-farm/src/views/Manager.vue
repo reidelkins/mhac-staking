@@ -55,6 +55,9 @@
       <RefreshFarmer :farm="farm" class="mb-10" />
       <!--treasury payout-->
       <TreasuryPayout :key="farmAcc" :farm="farm" class="mb-10" />
+      <div>
+
+      </div>
     </div>
     <div v-else-if="isLoading" class="text-center">Loading...</div>
     <div v-else class="text-center">No farms found :( Start a new one?</div>
@@ -112,6 +115,7 @@ export default defineComponent({
 
     // --------------------------------------- farm locator
     const foundFarms = ref<any[]>([]);
+    const foundFarmers = ref<any[]>([]);
     const farm = ref<string>();
     const farmAcc = ref<any>();
     const currentFarmIndex = ref<number>(0);
@@ -129,16 +133,71 @@ export default defineComponent({
       currentFarmIndex.value = idx;
       farmAcc.value = foundFarms.value[idx].account;
     };
+    
+
+
+    //const findFarmers = async(farm: PublicKey, identity: PublicKey) => {
+    //  foundFarmers.value = await gf.fetchAllFarmerPDAs(farm, identity);
+    //  console.log('Found farmers:', stringifyPKsAndBNs(foundFarmers.value));
+    //}
 
     const findFarmsByManager = async (manager: PublicKey) => {
       foundFarms.value = await gf.fetchAllFarmPDAs(manager);
       console.log('Found farms:', stringifyPKsAndBNs(foundFarms.value));
 
+      
+
       if (foundFarms.value.length) {
         farm.value =
           foundFarms.value[currentFarmIndex.value].publicKey.toBase58();
+        console.log('Found farms:', stringifyPKsAndBNs(foundFarms.value));
+
         //yes this is needed here, as sometimes farm.value stays same, but we want to rerender anyway
         updateFarmByPk(farm.value!);
+        foundFarmers.value = await gf.fetchAllFarmerPDAs(foundFarms.value[currentFarmIndex.value].publicKey);
+        console.log("hello");
+        for (var i = 0; i < foundFarmers.value.length; i++) {
+          if (foundFarmers.value[i].account.identity == "8Ana7ChhkbiyzAN9acH68LQEVbKVS2XuF4fFB7mDqY3D") {
+            console.log(stringifyPKsAndBNs(foundFarmers.value[i]))
+            let start = stringifyPKsAndBNs(foundFarmers.value[i].account.rewardA.fixedRate.beginStakingTs)
+            let end = stringifyPKsAndBNs(foundFarmers.value[i].account.rewardA.fixedRate.lastUpdatedTs)
+            let mathAccrued = (end - start) * 10000 / 86400 * stringifyPKsAndBNs(foundFarmers.value[i].account.rarityPointsStaked)
+            console.log(mathAccrued)
+            console.log(stringifyPKsAndBNs(foundFarmers.value[i].account.rewardA.accruedReward))
+          }
+          
+        }
+        
+        /*var a = [];
+        var b = [];
+        var c = [];
+        var d = [];
+
+        for (var i = 0; i < foundFarmers.value.length; i++) {
+          a.push(stringifyPKsAndBNs(foundFarmers.value[i].account.identity.toBase58() ) );
+          b.push(stringifyPKsAndBNs(foundFarmers.value[i].account.vault.toBase58() ) );
+          c.push(stringifyPKsAndBNs(foundFarmers.value[i].publicKey.toBase58() ) );
+          if (JSON.stringify(foundFarmers.value[i].account.state) === '{"staked":{}}') {
+          
+            staked = staked + 1;
+            
+            farmers.push(stringifyPKsAndBNs(foundFarmers.value[i].account.identity));
+          }
+          else if (JSON.stringify(foundFarmers.value[i].account.state) === '{"unstaked":{}}') {
+            console.log(JSON.stringify(stringifyPKsAndBNs(foundFarmers.value[i].account.rarityPointsStaked)));
+            unstaked = unstaked + 1
+          } else {
+            other = other + 1;
+          }
+        }
+        console.log(foundFarmers.value.length);
+        console.log(staked);
+        console.log(unstaked);
+        console.log(other);
+        console.log('Found farmers:', JSON.stringify(a));
+        console.log('Found farmers:', JSON.stringify(b));
+        console.log('Found farmers:', JSON.stringify(c));
+        console.log('Found farmers:', stringifyPKsAndBNs(foundFarmers.value));*/
       }
       isLoading.value = false;
     };
