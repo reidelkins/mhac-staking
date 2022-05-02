@@ -1,6 +1,11 @@
 {
+<<<<<<< HEAD
   "name": "@reidelkins/mhac-staking",
   "version": "1.0.9",
+=======
+  "name": "@gemworks/gem-farm-ts",
+  "version": "0.24.1",
+>>>>>>> 33a814124e56db4fca924fbc027a1bae57e8c39f
   "description": "sdk for Gem Farm (by GemWorks 💎)",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -35,7 +40,7 @@
   "dependencies": {
     "@metaplex-foundation/mpl-token-metadata": "^0.0.2",
     "@metaplex/js": "^4.9.0",
-    "@project-serum/anchor": "0.22.0",
+    "@project-serum/anchor": "0.24.2",
     "@solana/spl-token": "^0.1.8",
     "@solana/wallet-adapter-base": "^0.8.1",
     "@solana/web3.js": "^1.31.0"
